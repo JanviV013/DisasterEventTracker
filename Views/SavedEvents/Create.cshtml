@@ -1,0 +1,23 @@
+@model SavedEventFormViewModel
+@{
+    ViewData["Title"] = "Save Earthquake";
+}
+
+<h4 class="mb-3">Save earthquake to my tracker</h4>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <partial name="_SavedEventFields" model="Model" />
+
+            <button type="submit" class="btn btn-success">Save</button>
+            <a asp-controller="Earthquakes" asp-action="Details" asp-route-id="@Model.EarthquakeId" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

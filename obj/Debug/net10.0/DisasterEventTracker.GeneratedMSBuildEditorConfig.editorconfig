@@ -1,0 +1,112 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFramework = net10.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.EntryPointFilePath = 
+build_property.RootNamespace = DisasterEventTracker
+build_property.RootNamespace = DisasterEventTracker
+build_property.ProjectDir = C:\Users\JANVI\OneDrive\Desktop\Web .NET project\DisasterEventTracker\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 10.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\JANVI\OneDrive\Desktop\Web .NET project\DisasterEventTracker
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/Earthquakes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWFydGhxdWFrZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/Earthquakes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWFydGhxdWFrZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/Home/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/SavedEvents/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2F2ZWRFdmVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/SavedEvents/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2F2ZWRFdmVudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/SavedEvents/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2F2ZWRFdmVudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/SavedEvents/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2F2ZWRFdmVudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/SavedEvents/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2F2ZWRFdmVudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/SavedEvents/_SavedEventFields.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2F2ZWRFdmVudHNcX1NhdmVkRXZlbnRGaWVsZHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/WatchList/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2F0Y2hMaXN0XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/WatchList/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2F0Y2hMaXN0XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/WatchList/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2F0Y2hMaXN0XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/WatchList/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2F0Y2hMaXN0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/WatchList/_WatchListForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2F0Y2hMaXN0XF9XYXRjaExpc3RGb3JtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JANVI/OneDrive/Desktop/Web .NET project/DisasterEventTracker/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,69 @@
+@using System.Globalization
+@model WatchListIndexViewModel
+@{
+    ViewData["Title"] = "Watch List";
+    var inv = CultureInfo.InvariantCulture;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h4 class="mb-0">My Watch List</h4>
+    <a asp-action="Create" class="btn btn-success btn-sm">+ Add watch</a>
+</div>
+
+<p class="text-muted small">
+    A watch is a region keyword plus a minimum magnitude. When you open the dashboard, earthquakes from the last 7 days that
+    match an active watch are shown in a banner. The check happens when the page loads, it is not a real-time alert.
+</p>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-warning">@Model.ErrorMessage</div>
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Region keyword</th>
+                        <th>Min magnitude</th>
+                        <th>Alerts</th>
+                        <th>Matching now (7 days)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Rows.Any())
+                    {
+                        <tr><td colspan="6" class="text-center text-muted">Your watch list is empty. Add a region such as Japan or Alaska.</td></tr>
+                    }
+                    @foreach (var row in Model.Rows)
+                    {
+                        <tr>
+                            <td>@row.Item.Name</td>
+                            <td>@row.Item.RegionKeyword</td>
+                            <td>@row.Item.MinMagnitude.ToString("0.0", inv)</td>
+                            <td>
+                                @if (row.Item.IsActive)
+                                {
+                                    <span class="badge bg-success">On</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Off</span>
+                                }
+                            </td>
+                            <td>@(row.MatchCount.HasValue ? row.MatchCount.Value.ToString() : "N/A")</td>
+                            <td class="text-nowrap">
+                                <a asp-action="Edit" asp-route-id="@row.Item.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@row.Item.Id" class="btn btn-sm btn-outline-danger">Remove</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

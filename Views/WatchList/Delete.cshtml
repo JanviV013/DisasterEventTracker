@@ -1,0 +1,25 @@
+@using System.Globalization
+@model WatchListItem
+@{
+    ViewData["Title"] = "Remove Watch";
+}
+
+<h4 class="mb-3 text-danger">Remove this watch?</h4>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-sm table-borderless">
+            <tbody>
+                <tr><th scope="row" style="width: 30%;">Name</th><td>@Model.Name</td></tr>
+                <tr><th scope="row">Region keyword</th><td>@Model.RegionKeyword</td></tr>
+                <tr><th scope="row">Minimum magnitude</th><td>@Model.MinMagnitude.ToString("0.0", CultureInfo.InvariantCulture)</td></tr>
+                <tr><th scope="row">Alerts</th><td>@(Model.IsActive ? "On" : "Off")</td></tr>
+            </tbody>
+        </table>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            <button type="submit" class="btn btn-danger">Yes, remove it</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

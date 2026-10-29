@@ -1,0 +1,38 @@
+/* Small custom styles on top of Bootstrap */
+
+#map,
+#detail-map {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.chart-box {
+    position: relative;
+    height: 300px;
+}
+
+.stat-card .card-body {
+    padding: 0.9rem 0.5rem;
+}
+
+/* Dark mode: darken the map tiles */
+[data-bs-theme="dark"] .leaflet-tile-pane {
+    filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+}
+
+/* The Leaflet popup stays readable in dark mode */
+[data-bs-theme="dark"] .leaflet-popup-content-wrapper,
+[data-bs-theme="dark"] .leaflet-popup-tip {
+    background: #212529;
+    color: #f8f9fa;
+}

@@ -1,0 +1,40 @@
+@using System.Globalization
+@model SavedEventFormViewModel
+@{
+    var inv = CultureInfo.InvariantCulture;
+}
+
+@if (Model.Info != null)
+{
+    <table class="table table-sm table-borderless mb-4">
+        <tbody>
+            <tr><th scope="row" style="width: 35%;">Magnitude</th><td>@(Model.Info.Magnitude.HasValue ? Model.Info.Magnitude.Value.ToString("0.0", inv) : "N/A")</td></tr>
+            <tr><th scope="row">Location</th><td>@Model.Info.Place</td></tr>
+            <tr><th scope="row">Time (UTC)</th><td>@Model.Info.EventTime.ToString("yyyy-MM-dd HH:mm")</td></tr>
+            <tr><th scope="row">Depth</th><td>@Model.Info.DepthKm.ToString("0.0", inv) km</td></tr>
+            <tr><th scope="row">Coordinates</th><td>@Model.Info.Latitude.ToString("0.00", inv), @Model.Info.Longitude.ToString("0.00", inv)</td></tr>
+        </tbody>
+    </table>
+}
+
+<input type="hidden" asp-for="EarthquakeId" />
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Priority" class="form-label"></label>
+        <select asp-for="Priority" asp-items="Html.GetEnumSelectList<PriorityLevel>()" class="form-select"></select>
+        <span asp-validation-for="Priority" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="Status" class="form-label"></label>
+        <select asp-for="Status" asp-items="Html.GetEnumSelectList<EventStatus>()" class="form-select"></select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Note" class="form-label"></label>
+    <textarea asp-for="Note" class="form-control" rows="3" maxlength="300"
+              placeholder="For example: felt in our city, no damage reported"></textarea>
+    <span asp-validation-for="Note" class="text-danger"></span>
+</div>

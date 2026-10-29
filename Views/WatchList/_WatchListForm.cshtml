@@ -1,0 +1,25 @@
+@model WatchListFormViewModel
+
+<div class="mb-3">
+    <label asp-for="Name" class="form-label"></label>
+    <input asp-for="Name" class="form-control" placeholder="e.g. Japan strong earthquakes" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="RegionKeyword" class="form-label"></label>
+    <input asp-for="RegionKeyword" class="form-control" placeholder="e.g. Japan" />
+    <div class="form-text">Matched against the USGS place name, for example "120 km SE of Tokyo, Japan".</div>
+    <span asp-validation-for="RegionKeyword" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="MinMagnitude" class="form-label"></label>
+    <input asp-for="MinMagnitude" class="form-control" type="number" step="0.1" min="0" max="10" />
+    <span asp-validation-for="MinMagnitude" class="text-danger"></span>
+</div>
+
+<div class="form-check mb-3">
+    <input asp-for="IsActive" class="form-check-input" />
+    <label asp-for="IsActive" class="form-check-label"></label>
+</div>

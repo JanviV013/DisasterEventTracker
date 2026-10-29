@@ -1,0 +1,27 @@
+@using System.Globalization
+@model SavedEvent
+@{
+    ViewData["Title"] = "Remove Saved Event";
+    var inv = CultureInfo.InvariantCulture;
+}
+
+<h4 class="mb-3 text-danger">Remove this saved event?</h4>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-sm table-borderless">
+            <tbody>
+                <tr><th scope="row" style="width: 30%;">Magnitude</th><td>@(Model.Magnitude.HasValue ? Model.Magnitude.Value.ToString("0.0", inv) : "N/A")</td></tr>
+                <tr><th scope="row">Location</th><td>@Model.Place</td></tr>
+                <tr><th scope="row">Time (UTC)</th><td>@Model.EventTime.ToString("yyyy-MM-dd HH:mm")</td></tr>
+                <tr><th scope="row">Priority / Status</th><td>@Model.Priority / @Model.Status</td></tr>
+                <tr><th scope="row">Your note</th><td>@(string.IsNullOrEmpty(Model.Note) ? "-" : Model.Note)</td></tr>
+            </tbody>
+        </table>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            <button type="submit" class="btn btn-danger">Yes, remove it</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

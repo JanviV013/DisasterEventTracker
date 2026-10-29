@@ -1,0 +1,81 @@
+@using System.Globalization
+@model EarthquakeDetailsViewModel
+@{
+    ViewData["Title"] = "Earthquake Details";
+    var quake = Model.Earthquake;
+    var inv = CultureInfo.InvariantCulture;
+    var mapPoint = new { lat = quake.Latitude, lon = quake.Longitude };
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h4 class="mb-0">Earthquake Details</h4>
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">← Back to dashboard</a>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <table class="table table-borderless mb-3">
+                    <tbody>
+                        <tr><th scope="row">Magnitude</th><td>@(quake.Magnitude.HasValue ? quake.Magnitude.Value.ToString("0.0", inv) : "N/A")</td></tr>
+                        <tr><th scope="row">Location</th><td>@quake.Place</td></tr>
+                        <tr><th scope="row">Latitude</th><td>@quake.Latitude.ToString("0.0000", inv)</td></tr>
+                        <tr><th scope="row">Longitude</th><td>@quake.Longitude.ToString("0.0000", inv)</td></tr>
+                        <tr><th scope="row">Depth</th><td>@quake.DepthKm.ToString("0.00", inv) km</td></tr>
+                        <tr><th scope="row">Date and time (UTC)</th><td>@quake.Time.ToString("yyyy-MM-dd HH:mm:ss")</td></tr>
+                        <tr><th scope="row">USGS tsunami flag</th><td>@(quake.TsunamiFlag ? "⚠️ Yes" : "No")</td></tr>
+                        <tr><th scope="row">Event type</th><td>@(quake.EventType ?? "N/A")</td></tr>
+                        <tr><th scope="row">Status</th><td>@(quake.Status ?? "N/A")</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex flex-wrap gap-2">
+                    @if (!string.IsNullOrEmpty(quake.Url) && quake.Url.StartsWith("https://"))
+                    {
+                        <a href="@quake.Url" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">View on USGS</a>
+                    }
+
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        if (Model.SavedEventId.HasValue)
+                        {
+                            <a asp-controller="SavedEvents" asp-action="Edit" asp-route-id="@Model.SavedEventId" class="btn btn-success btn-sm">✔ Saved, edit it</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="SavedEvents" asp-action="Create" asp-route-earthquakeId="@quake.Id" class="btn btn-success btn-sm">💾 Save to my tracker</a>
+                        }
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary btn-sm">Login to save this event</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">Location</div>
+            <div class="card-body"><div id="detail-map" style="height: 350px;"></div></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        (function () {
+            var point = @Json.Serialize(mapPoint);
+            var map = L.map('detail-map').setView([point.lat, point.lon], 5);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+            L.circleMarker([point.lat, point.lon], {
+                radius: 10, fillColor: '#d73027', color: '#000', weight: 1, fillOpacity: 0.8
+            }).addTo(map);
+        })();
+    </script>
+}

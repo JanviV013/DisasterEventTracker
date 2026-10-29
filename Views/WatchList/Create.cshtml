@@ -1,0 +1,23 @@
+@model WatchListFormViewModel
+@{
+    ViewData["Title"] = "Add Watch";
+}
+
+<h4 class="mb-3">Add to watch list</h4>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <partial name="_WatchListForm" model="Model" />
+
+            <button type="submit" class="btn btn-success">Add watch</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

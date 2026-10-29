@@ -1,0 +1,133 @@
+@using System.Globalization
+@model SavedEventsIndexViewModel
+@functions {
+    string PriorityBadge(PriorityLevel priority)
+    {
+        return priority switch
+        {
+            PriorityLevel.High => "bg-danger",
+            PriorityLevel.Medium => "bg-warning text-dark",
+            _ => "bg-secondary"
+        };
+    }
+
+    string StatusBadge(EventStatus status)
+    {
+        return status switch
+        {
+            EventStatus.Monitoring => "bg-primary",
+            EventStatus.Reviewed => "bg-info text-dark",
+            _ => "bg-secondary"
+        };
+    }
+}
+@{
+    ViewData["Title"] = "Saved Events";
+    var inv = CultureInfo.InvariantCulture;
+
+    var strongestText = "N/A";
+    if (Model.StrongestSaved != null && Model.StrongestSaved.Magnitude.HasValue)
+    {
+        strongestText = "M " + Model.StrongestSaved.Magnitude.Value.ToString("0.0", inv);
+    }
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h4 class="mb-0">My Saved Events</h4>
+    <a asp-controller="Earthquakes" asp-action="Index" class="btn btn-outline-primary btn-sm">Find earthquakes to save</a>
+</div>
+
+@* ---------- Summary ---------- *@
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-2"><div class="card text-center h-100 stat-card"><div class="card-body">
+        <h6 class="card-title">Total saved</h6><p class="fs-3 fw-bold mb-0">@Model.TotalSaved</p></div></div></div>
+    <div class="col-6 col-md-2"><div class="card text-center h-100 stat-card"><div class="card-body">
+        <h6 class="card-title">Monitoring</h6><p class="fs-3 fw-bold mb-0">@Model.MonitoringCount</p></div></div></div>
+    <div class="col-6 col-md-2"><div class="card text-center h-100 stat-card"><div class="card-body">
+        <h6 class="card-title">Reviewed</h6><p class="fs-3 fw-bold mb-0">@Model.ReviewedCount</p></div></div></div>
+    <div class="col-6 col-md-2"><div class="card text-center h-100 stat-card"><div class="card-body">
+        <h6 class="card-title">Closed</h6><p class="fs-3 fw-bold mb-0">@Model.ClosedCount</p></div></div></div>
+    <div class="col-6 col-md-2"><div class="card text-center h-100 stat-card"><div class="card-body">
+        <h6 class="card-title">High priority</h6><p class="fs-3 fw-bold mb-0">@Model.HighPriorityCount</p></div></div></div>
+    <div class="col-6 col-md-2"><div class="card text-center h-100 stat-card"><div class="card-body">
+        <h6 class="card-title">Strongest saved</h6><p class="fs-3 fw-bold mb-0">@strongestText</p></div></div></div>
+</div>
+
+@* ---------- Filter form (GET) ---------- *@
+<form method="get" asp-action="Index" class="card card-body mb-4">
+    <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label class="form-label" for="status">Status</label>
+            <select class="form-select" id="status" name="status">
+                <option value="">All statuses</option>
+                @foreach (var s in Enum.GetValues<EventStatus>())
+                {
+                    <option value="@s" selected="@(Model.StatusFilter == s)">@s</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="priority">Priority</label>
+            <select class="form-select" id="priority" name="priority">
+                <option value="">All priorities</option>
+                @foreach (var p in Enum.GetValues<PriorityLevel>())
+                {
+                    <option value="@p" selected="@(Model.PriorityFilter == p)">@p</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Clear</a>
+        </div>
+    </div>
+</form>
+
+@* ---------- Table ---------- *@
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>Magnitude</th>
+                        <th>Location</th>
+                        <th>Time (UTC)</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Your note</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Items.Any())
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">
+                                @(Model.TotalSaved == 0
+                                    ? "You have not saved any earthquakes yet. Open an earthquake on the dashboard and choose Save."
+                                    : "No saved events match this filter.")
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@(item.Magnitude.HasValue ? item.Magnitude.Value.ToString("0.0", inv) : "N/A")</td>
+                            <td>@item.Place</td>
+                            <td>@item.EventTime.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td><span class="badge @PriorityBadge(item.Priority)">@item.Priority</span></td>
+                            <td><span class="badge @StatusBadge(item.Status)">@item.Status</span></td>
+                            <td>@(string.IsNullOrEmpty(item.Note) ? "-" : item.Note)</td>
+                            <td class="text-nowrap">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">View</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Remove</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
